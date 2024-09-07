@@ -5,6 +5,13 @@
 pip install pexpect
 ```
 
+Otherwise, following.
+
+```
+sudo apt install python3-pexpect
+```
+
+
 ### TFTP server
 ```
 apt install tftpd-hpa
