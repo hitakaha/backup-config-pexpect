@@ -3,7 +3,12 @@
 Simple script to backup configs
 
 Prerequisits:
+- Python:
   pip install pexpect
+
+- TFTP server
+  apt install tftpd-hpa
+
 """
 
 from logging import DEBUG, INFO
@@ -11,25 +16,26 @@ import logging
 import pexpect
 
 # Please configure following
-TFTP_SERVER = "192.168.4.2"
+TFTP_SERVER = "172.30.0.1"
 PROMPT = "RP/0/RP0/CPU0"
 
 # Enable/disable debug outputs
-#LOG_LEVEL = "INFO"
-LOG_LEVEL = "DEBUG"
+LOG_LEVEL = "INFO"
+#LOG_LEVEL = "DEBUG"
 
 
 # Define access info for target devices
 # Format:
 #   "hostname": ["address", "username", "password"]
 hosts={
-    "xr9kv1": ["192.168.4.111", "cisco", "cisco"],
-    "xr9kv2": ["192.168.4.112", "cisco", "cisco"],
-    "xr9kv3": ["192.168.4.113", "cisco", "cisco"],
-    "xr9kv4": ["192.168.4.114", "cisco", "cisco"],
-    "xr9kv5": ["192.168.4.115", "cisco", "cisco"],
-    "xr9kv6": ["192.168.4.116", "cisco", "cisco"],
-    "xr9kv7": ["192.168.4.117", "cisco", "cisco"]
+    "xrd-1": ["172.30.0.2", "admin", "admin"],
+    "xrd-2": ["172.30.0.3", "admin", "admin"],
+    "xrd-3": ["172.30.0.4", "admin", "admin"],
+    "xrd-4": ["172.30.0.5", "admin", "admin"],
+    "xrd-5": ["172.30.0.6", "admin", "admin"],
+    "xrd-6": ["172.30.0.7", "admin", "admin"],
+    "xrd-7": ["172.30.0.8", "admin", "admin"],
+    "xrd-8": ["172.30.0.9", "admin", "admin"]
 }
 
 
@@ -53,8 +59,6 @@ def main():
     """
 
     log = set_logger()
-    log.debug("debug")
-    log.info("info")
 
     for host,params in hosts.items():
         print("=== Start ===")
@@ -63,7 +67,7 @@ def main():
         log.debug(f"host = {params[1]}")
         log.debug(f"host = {params[2]}")
 
-        login = "ssh "+params[1]+"@"+params[0]
+        login = "ssh -o StrictHostKeyChecking=no "+params[1]+"@"+params[0]
         print("Login info="+str(login))
         r = pexpect.spawn(login)
 
@@ -81,12 +85,12 @@ def main():
         print("send command"+str(command))
         r.sendline(command)
 
-        log.debug(r.before)
-        log.debug(r.after)
-        log.debug(r.buffer)
-        r.expect("Host name or IP address")
-        r.sendline("\n")
-
+#        log.debug(r.before)
+#        log.debug(r.after)
+#        log.debug(r.buffer)
+#        r.expect("Host name or IP address")
+#        r.sendline("\n")
+#
         log.debug(r.before)
         log.debug(r.after)
         log.debug(r.buffer)
