@@ -1,5 +1,5 @@
 # Sample script to backup config
-##Prerequisits:
+## Prerequisits:
 ### Python
 ```
 pip install pexpect
@@ -11,7 +11,9 @@ apt install tftpd-hpa
 ```
 
 Then, change /etc/default/tftpd-hpa
+
 [From] TFTP_OPTIONS="--secure"
+
 [To] TFTP_OPTIONS="--secure --create"
 
 ```
