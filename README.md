@@ -35,4 +35,11 @@ PROMPT = "RP/0/RP0/CPU0"
 ```
 
 Configure tareget host info.
+"hostname": ["IP addresss", "username", "password"]
 
+```
+hosts={
+    "xrd-1": ["172.30.0.2", "admin", "admin"],
+    "xrd-2": ["172.30.0.3", "admin", "admin"]
+}
+```
