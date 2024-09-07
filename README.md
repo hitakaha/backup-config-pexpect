@@ -1,5 +1,5 @@
 # Sample script to backup config
-## Prerequisits:
+## Prerequisite:
 ### Python
 ```
 pip install pexpect
