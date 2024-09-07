@@ -53,10 +53,6 @@ Backup config host: xrd-1
 Login info: ssh -o StrictHostKeyChecking=no admin@172.30.0.2
 send command: copy run tftp://172.30.0.1/xrd-1.cfg
 === Done ===
-Backup config host: xrd-1
-Login info: ssh -o StrictHostKeyChecking=no admin@172.30.0.2
-send command: copy run tftp://172.30.0.1/xrd-1.cfg
-=== Done ===
 === Start ===
 Backup config host: xrd-2
 Login info: ssh -o StrictHostKeyChecking=no admin@172.30.0.3
