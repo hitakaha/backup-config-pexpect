@@ -28,14 +28,14 @@ LOG_LEVEL = "INFO"
 # Format:
 #   "hostname": ["address", "username", "password"]
 hosts={
-    "xrd-1": ["172.30.0.2", "admin", "admin"],
-    "xrd-2": ["172.30.0.3", "admin", "admin"],
-    "xrd-3": ["172.30.0.4", "admin", "admin"],
-    "xrd-4": ["172.30.0.5", "admin", "admin"],
-    "xrd-5": ["172.30.0.6", "admin", "admin"],
-    "xrd-6": ["172.30.0.7", "admin", "admin"],
-    "xrd-7": ["172.30.0.8", "admin", "admin"],
-    "xrd-8": ["172.30.0.9", "admin", "admin"]
+    "xrd-1": ["172.30.0.2", "admin", "cisco123"],
+    "xrd-2": ["172.30.0.3", "admin", "cisco123"],
+    "xrd-3": ["172.30.0.4", "admin", "cisco123"],
+    "xrd-4": ["172.30.0.5", "admin", "cisco123"],
+    "xrd-5": ["172.30.0.6", "admin", "cisco123"],
+    "xrd-6": ["172.30.0.7", "admin", "cisco123"],
+    "xrd-7": ["172.30.0.8", "admin", "cisco123"],
+    "xrd-8": ["172.30.0.9", "admin", "cisco123"]
 }
 
 
@@ -62,13 +62,13 @@ def main():
 
     for host,params in hosts.items():
         print("=== Start ===")
-        print("Backup config host="+str(host))
+        print("Backup config host: "+str(host))
         log.debug(f"host = {params[0]}")
         log.debug(f"host = {params[1]}")
         log.debug(f"host = {params[2]}")
 
         login = "ssh -o StrictHostKeyChecking=no "+params[1]+"@"+params[0]
-        print("Login info="+str(login))
+        print("Login info: "+str(login))
         r = pexpect.spawn(login)
 
         log.debug(r.before)
@@ -82,7 +82,7 @@ def main():
         log.debug(r.buffer)
         r.expect(PROMPT)
         command="copy run tftp://"+TFTP_SERVER+"/"+host+".cfg"
-        print("send command"+str(command))
+        print("send command: "+str(command))
         r.sendline(command)
 
 #        log.debug(r.before)
