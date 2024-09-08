@@ -41,7 +41,7 @@ TFTP_SERVER = "172.30.0.1"
 PROMPT = "RP/0/RP0/CPU0"
 ```
 
-Configure tareget host info.
+Configure info about target hosts.
 "hostname": ["IP addresss", "username", "password"]
 
 ```
